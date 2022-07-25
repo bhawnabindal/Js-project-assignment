@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <h1>Print numbers in decreasing frequency order</h1>
+    Numbers: 3 3 4 4 7 8
+    <br><br>
+
+<body>
+    <button onclick="FreqOrder()"> Find </button>
+    <script>
+        const FreqOrder = () => {
+            let arr = "3 3 4 4 7 8 ", len = arr.length;
+            let freq = new Map();
+            for (let i = 0; i < len; i++)
+                if (freq.has(arr[i]))
+                    freq.set(arr[i], freq.get(arr[i]) + 1);
+                else
+                    freq.set(arr[i], 1);
+            let size = freq.size;
+            for (let i = size; size > 0; size--) {
+                let currentMax = 0, maxVal = 0;
+                for (let [num, f] of freq.entries()) {
+                    if (f > currentMax || (f == currentMax && num > maxVal)) {
+                        maxVal = num;
+                        currentMax = f;
+                    }
+                }
+                document.write(maxVal + " ");
+                freq.delete(maxVal);
+
+            }
+        }
+    </script>
+</body>
+
+</html>
